@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+
+#user{
+    margin-bottom: 10px;
+}
+
+div#container{
+    display: grid; 
+    grid-template-columns: repeat(16,1fr); 
+    grid-template-columns: repeat(16,1fr);
+    width: 600px;
+    height: 300px;
+}
+
+#item:hover{
+    background-color: red;
+}
+
