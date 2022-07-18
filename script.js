@@ -1,44 +1,59 @@
+//RAINBOW IS CLICKED IT STAYS CLICKED
+//IMPLEMENT A FASTER WAY TO DRAW. EG MAINTAIN THE MOUSE DOWN??
+//if prommpt not accepted the sketch background goes red
 
-//:
-let container= document.getElementById('container')
+let container = document.getElementById("container")
 let button = document.getElementById('send')
 let colorEl = document.getElementById('colorInput')
 let erase= document.getElementById('erase')
+let rainbow = document.getElementById('rainbow')
 
 
-//THIS IS THE DEFALT 16x16 grid
-function createGrid(){
-
-    for (let i= 1; i<= 16; i++){   // filas
-        let row = document.createElement('div')
-        row.id= "item"
-        container.append(row)
+function defaultGrid(x){
+    for (let i= 1; i<=x; i++){
+        let item = document.createElement('div')
+        item.id = "item" 
+        container.append(item)
+     for (let j= 1; j<=x; j++){
+        let subItem = document.createElement('div')
+        subItem.id = "subItem" 
+        item.append(subItem)
+        subItem.addEventListener('click', changeBackground)
+        function changeBackground(){
+            subItem.style.cssText=`
+            background-color: ${colorEl.value};
+              `
+        }
+        erase.addEventListener('click', eraseFun)
+        function eraseFun(){
+            subItem.style.cssText = `
+            background-color: white;
+            `
+        }
+       rainbow.addEventListener('click', function rainbowColor(){
+            const randomR = Math.floor(Math.random()*256)
+            const randomG = Math.floor(Math.random()*256)
+            const randomB = Math.floor(Math.random()*256)
+            subItem.addEventListener('mouseover', function rainbowSet(){
+                subItem.removeEventListener('mouseover', rainbowSet)
+                subItem.style.cssText = `
+                background-color: rgb(${randomR},${randomG}, ${randomB});
+                `    
+            })
+        })
         
-        for (let j= 1; j<= 16; j++){
-            let box = document.createElement('div')
-            box.id= "box"
-            row.append(box)
-            //add background color
-            box.addEventListener('mouseover', setBoxBackground)
-            function setBoxBackground(){
-                box.style.cssText = `background-color: ${colorEl.value};`
-            }
-            //erase the div by clicking on it
-            box.addEventListener('click', eraseBoxBackground)
-            function eraseBoxBackground(){
-                box.style.cssText = `background-color: initial;`
-            }
-            erase.addEventListener('click', eraseFun)
-            function eraseFun(){
-                box.style.cssText = `background-color: initial;`
-            }
-
-         }
-        
-    }
+    }  
    
 }
-createGrid()
+}
+defaultGrid(16)
+
+
+
+
+
+
+
 
 
 //once the button is clicked  the is going to change according to 
@@ -53,36 +68,7 @@ button.addEventListener('click', function(){
     }
     
     else if(a<100){
-
-        for (let i= 1; i<= a; i++){   // filas
-            let row = document.createElement('div')
-            row.id= "item"
-            container.appendChild(row)
-            
-            for (let j= 1; j<= a; j++){
-                let box = document.createElement('div')
-                box.id= "box"
-                row.append(box)
-                box.addEventListener('mouseover', setBoxBackground)
-            
-            //add background color
-            box.addEventListener('mouseover', setBoxBackground)
-            function setBoxBackground(){
-                box.style.cssText = `background-color: ${colorEl.value};`
-            }
-            //erase the div by clicking on it
-            box.addEventListener('click', eraseBoxBackground)
-            function eraseBoxBackground(){
-                box.style.cssText = `background-color: initial;`
-            }
-            erase.addEventListener('click', eraseFun)
-            function eraseFun(){
-                box.style.cssText = `background-color: initial;`
-            }
-            }
-
-        
-        }
+        defaultGrid(a)
     }
 })
 

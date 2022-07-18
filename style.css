@@ -2,35 +2,77 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    width: auto;
+    height: auto;
 }
 body{
     display: flex;
-    flex-wrap: wrap;
-    width: 100%;
     justify-content: center;
-    flex-grow: 0;
     align-items: center;
+    padding: 20px;
+    background-image: url('./manyColors.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
-#box{
-    border: 1px solid rgba(0, 0, 0, 0.7);
-    width: 15px;
-    height: 15px;
-    background-color: white;
-}
-#container{
-    border: 2px solid burlywood;
-    padding: 0;
+
+.casket{
+    border: 2px solid black;
     display: flex;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
-    gap: 0;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 300px;
-    height: 300px;
-    margin: 2rem 2rem;
+    flex-direction: row;
+    padding: 30px 120px;
+    border-radius: 50px;
+    background-color: rgb(165, 1, 1);
 }
+
+div#container{
+    display: grid; 
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    
+}
+#item{
+    display: flex;
+    flex-direction: row;
+    /*border: 1px solid blue;*/
+    flex-grow: 0;
+ 
+}
+
+#subItem{
+    /*border: 1px solid yellow;*/
+    flex-grow: 1;
+    background-color: white;
+
+}
+
+#otherItems{
+    border: 1px solid black;
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    align-items: center;
+    width: 200px;
+    height: 500px;
+    background-color: whitesmoke;
+    border-radius: 50px 0px 0px 50px;
+}
+#send, #erase, #road,#rainbow{
+    text-align: center; 
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    box-shadow: 2px 1px rgb(218, 198, 161);
+    background-color: rgb(230, 223, 223);
+    margin: 10px 20px;
+    font-size: 15px;
+}
+
 #colorInput{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -46,17 +88,5 @@ body{
     border-radius: 50%;
     border: none;
 }
-
-#send, #erase{
-    padding: 15px 30px;
-    border: none;
-    border-radius: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
-    box-shadow: 2px 1px wheat;
-    margin: 10px 20px;
-}
-
-
 
 
