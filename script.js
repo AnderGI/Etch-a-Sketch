@@ -1,6 +1,6 @@
-const body = document.getElementsByTagName("body")
-const container = document.getElementById("container")
-//const containerItem = document.createElement('div')
+let body = document.getElementsByTagName("body")
+let container = document.getElementById("container")
+
 
 const userButton = document.getElementById('user')
 
@@ -8,22 +8,26 @@ const userButton = document.getElementById('user')
 
 
 
-
-
-
 //THIS IS GOING TO BE FOR THE PROMPT
-let a = 16
+let a = 50
 
 function createGrid(){
     for (let i= 1; i<=a; i++){
-        for(let j=1; j<=a; j++){
-            container.style.cssText = `
-            grid-template-columns: repeat(${a},1fr); 
-            grid-template-columns: repeat(${a},1fr);
+        let item = document.createElement('div')
+        item.id = "item" 
+        container.append(item)
+     for (let j= 1; j<=a; j++){
+        let subItem = document.createElement('div')
+        subItem.id = "subItem" 
+        item.append(subItem)
+        subItem.addEventListener('mouseover', changeBackground)
+        function changeBackground(){
+            subItem.style.cssText=`
+            background-color: yellow;
             `
-            container.innerHTML += `<div style="border: 1px solid black;" id="item"></div>`
         }
     }
+}
 }
 createGrid()
 

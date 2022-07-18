@@ -8,13 +8,22 @@
 
 div#container{
     display: grid; 
-    grid-template-columns: repeat(16,1fr); 
-    grid-template-columns: repeat(16,1fr);
     width: 600px;
-    height: 300px;
+    height: 600px;
+    border: 1px solid black;
+    
+}
+#item{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid blue;
+    flex-grow: 0;
+ 
 }
 
-#item:hover{
-    background-color: red;
+#subItem{
+    border: 1px solid yellow;
+    flex-grow: 1;
+    background-color: white;
 }
 
