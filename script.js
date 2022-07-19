@@ -2,14 +2,14 @@
 //IMPLEMENT A FASTER WAY TO DRAW. EG MAINTAIN THE MOUSE DOWN??
 //if prommpt not accepted the sketch background goes red
 
-let container = document.getElementById("container")
-let button = document.getElementById('send')
-let black = document.getElementById('black')
-let erase= document.getElementById('erase')
-let rainbow = document.getElementById('rainbow')
-let eraseOne = document.getElementById('eraseOne')
-let warmEl = document.getElementById('warm')
-let coldEl = document.getElementById('cold')
+const container = document.getElementById("container")
+const button = document.getElementById('send')
+const black = document.getElementById('black')
+const erase= document.getElementById('erase')
+const rainbow = document.getElementById('rainbow')
+const eraseOne = document.getElementById('eraseOne')
+const warmEl = document.getElementById('warm')
+const coldEl = document.getElementById('cold')
 
 function defaultGrid(x){
     for (let i= 1; i<=x; i++){
@@ -22,56 +22,45 @@ function defaultGrid(x){
         subItem.id = "subItem" 
         item.append(subItem)
 
-        black.addEventListener('click', blackColor)
-        
-        function blackColor(){
-            subItem.addEventListener('mouseover', ()=> {
+        black.addEventListener('click', ()=>{
+            subItem.addEventListener('click', ()=> {
                 subItem.style.cssText=`
-            background-color: black;
-            ` })
-        }
-
-        warmEl.addEventListener('click', warmColor)
+                    background-color: black;
+                ` })
+        })
         
-        function warmColor(){
-
+   
+        warmEl.addEventListener('click', ()=>{
             const randomR = Math.floor(Math.random()*256)
             const randomG = Math.floor(Math.random()*256)
-            subItem.addEventListener('mouseover', ()=> {subItem.style.cssText=`
-            background-color: rgb(${randomR},${randomG},0);
+            subItem.addEventListener('click', ()=> {subItem.style.cssText=`
+                background-color: rgb(${randomR},${randomG},0);
             ` })
-        }
-
-        coldEl.addEventListener('click', coldColor)
-        
-        function coldColor(){
-
-            const randomG = Math.floor(Math.random()*256)
-            const randomB = Math.floor(Math.random()*256)
-            subItem.addEventListener('mouseover', ()=> {subItem.style.cssText=`
-            background-color: rgb(0,${randomG},${randomB});
-            ` })
-        }
-
+        })
         
 
-      rainbow.addEventListener('click', rainbowColor)
-        
-        function rainbowColor(){
-
-            const randomR = Math.floor(Math.random()*256)
+        coldEl.addEventListener('click', ()=>{
             const randomG = Math.floor(Math.random()*256)
             const randomB = Math.floor(Math.random()*256)
             subItem.addEventListener('click', ()=> {subItem.style.cssText=`
-            background-color: rgb(${randomR},${randomG},${randomB});
-            ` })
-        }
+                background-color: rgb(0,${randomG},${randomB});
+            ` })    
+        })
         
+
+        rainbow.addEventListener('click', ()=>{
+            const randomR = Math.floor(Math.random()*256)
+            const randomG = Math.floor(Math.random()*256)
+            const randomB = Math.floor(Math.random()*256)
+                subItem.addEventListener('click', ()=> {subItem.style.cssText=`
+                    background-color: rgb(${randomR},${randomG},${randomB});
+                ` })      
+        })
         
         erase.addEventListener('click', ()=>{
             subItem.style.cssText = `
-            background-color: white;
-            `
+                background-color: white;
+                `
         })
        
         }
@@ -82,23 +71,26 @@ function defaultGrid(x){
 
 defaultGrid(16)
 
-
-
-
-
-
-
-
-
-//once the button is clicked  the is going to change according to 
-//a (user input, both width and height), unless is bigger or equal to 100
 button.addEventListener('click', function(){
     container.innerHTML= " "
     let a = Number(prompt('choose'))
-    console.log(a)
-    
     if(a>= 100){
-        container.innerHTML = "Nope. Too many pixels."
+        container.innerHTML = `
+        <div 
+            style="
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            width:450px;
+            height:450px;
+            color: red;
+            font-weight:900;
+            font-size:30px;
+            font-family: Arial, Helvetica, sans-serif;
+            "> 
+                Nope :( TOO MANY PIXELS 
+        </div>
+        `
     }
     
     else if(a<100){
