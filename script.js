@@ -4,50 +4,76 @@
 
 let container = document.getElementById("container")
 let button = document.getElementById('send')
-let colorEl = document.getElementById('colorInput')
+let black = document.getElementById('black')
 let erase= document.getElementById('erase')
 let rainbow = document.getElementById('rainbow')
 let eraseOne = document.getElementById('eraseOne')
+let warmEl = document.getElementById('warm')
+let coldEl = document.getElementById('cold')
 
 function defaultGrid(x){
     for (let i= 1; i<=x; i++){
         let item = document.createElement('div')
         item.id = "item" 
         container.append(item)
+
      for (let j= 1; j<=x; j++){
         let subItem = document.createElement('div')
         subItem.id = "subItem" 
         item.append(subItem)
-        subItem.addEventListener('click', changeBackground)
-        function changeBackground(){
-            subItem.style.cssText=`
-            background-color: ${colorEl.value};
-              `
+
+        black.addEventListener('click', blackColor)
+        
+        function blackColor(){
+            subItem.addEventListener('mouseover', ()=> {
+                subItem.style.cssText=`
+            background-color: black;
+            ` })
         }
-        erase.addEventListener('click', eraseFun)
-        function eraseFun(){
+
+        warmEl.addEventListener('click', warmColor)
+        
+        function warmColor(){
+
+            const randomR = Math.floor(Math.random()*256)
+            const randomG = Math.floor(Math.random()*256)
+            subItem.addEventListener('mouseover', ()=> {subItem.style.cssText=`
+            background-color: rgb(${randomR},${randomG},0);
+            ` })
+        }
+
+        coldEl.addEventListener('click', coldColor)
+        
+        function coldColor(){
+
+            const randomG = Math.floor(Math.random()*256)
+            const randomB = Math.floor(Math.random()*256)
+            subItem.addEventListener('mouseover', ()=> {subItem.style.cssText=`
+            background-color: rgb(0,${randomG},${randomB});
+            ` })
+        }
+
+        
+
+      rainbow.addEventListener('click', rainbowColor)
+        
+        function rainbowColor(){
+
+            const randomR = Math.floor(Math.random()*256)
+            const randomG = Math.floor(Math.random()*256)
+            const randomB = Math.floor(Math.random()*256)
+            subItem.addEventListener('click', ()=> {subItem.style.cssText=`
+            background-color: rgb(${randomR},${randomG},${randomB});
+            ` })
+        }
+        
+        
+        erase.addEventListener('click', ()=>{
             subItem.style.cssText = `
             background-color: white;
             `
-        }
-        rainbow.addEventListener('click', ()=>{
-            subItem.addEventListener('click', ()=>{
-                const randomR = Math.floor(Math.random()*256)
-                const randomG = Math.floor(Math.random()*256)
-                const randomB = Math.floor(Math.random()*256)
-                subItem.style.cssText=`
-                background-color: rgb(${randomR},${randomG},${randomB});
-                `
-            })
         })
-        eraseOne.addEventListener('click', ()=>{
-            subItem.addEventListener('click', ()=>{
-                subItem.style.cssText=`
-                background-color: white;
-                `
-            })
-        })
-    
+       
         }
         
     }  
