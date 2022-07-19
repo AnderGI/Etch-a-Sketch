@@ -7,7 +7,7 @@ let button = document.getElementById('send')
 let colorEl = document.getElementById('colorInput')
 let erase= document.getElementById('erase')
 let rainbow = document.getElementById('rainbow')
-
+let eraseOne = document.getElementById('eraseOne')
 
 function defaultGrid(x){
     for (let i= 1; i<=x; i++){
@@ -30,22 +30,30 @@ function defaultGrid(x){
             background-color: white;
             `
         }
-       rainbow.addEventListener('click', function rainbowColor(){
-            const randomR = Math.floor(Math.random()*256)
-            const randomG = Math.floor(Math.random()*256)
-            const randomB = Math.floor(Math.random()*256)
-            subItem.addEventListener('mouseover', function rainbowSet(){
-                subItem.removeEventListener('mouseover', rainbowSet)
-                subItem.style.cssText = `
-                background-color: rgb(${randomR},${randomG}, ${randomB});
-                `    
+        rainbow.addEventListener('click', ()=>{
+            subItem.addEventListener('click', ()=>{
+                const randomR = Math.floor(Math.random()*256)
+                const randomG = Math.floor(Math.random()*256)
+                const randomB = Math.floor(Math.random()*256)
+                subItem.style.cssText=`
+                background-color: rgb(${randomR},${randomG},${randomB});
+                `
             })
         })
+        eraseOne.addEventListener('click', ()=>{
+            subItem.addEventListener('click', ()=>{
+                subItem.style.cssText=`
+                background-color: white;
+                `
+            })
+        })
+    
+        }
         
     }  
    
 }
-}
+
 defaultGrid(16)
 
 
